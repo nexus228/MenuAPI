@@ -2,7 +2,8 @@
 {
     public class Meal
     {
+        public required string Name { get; set; }
 
-        public string Name { get; set; }
+        public required MealIdentifier Identifier { get; set; }
     }
 }

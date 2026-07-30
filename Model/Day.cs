@@ -6,6 +6,8 @@
 
         public required string Name { get; set; }
 
-        public Meal Meal { get; set; }
+        public required DateTime Date { get; set; }
+
+        public IList<Meal>? Meal { get; set; }
     }
 }
