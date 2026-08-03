@@ -1,10 +1,23 @@
 @MenuAPI_HostAddress = https://localhost:7118
 
+
+GET {{MenuAPI_HostAddress}}/api/menu/allMenus
+
+###
+
+GET {{MenuAPI_HostAddress}}/api/menu/allMenus
+
+###
+
 GET {{MenuAPI_HostAddress}}/api/menu/allMenus
 
 ###
 
 @id=1
-GET {{MenuAPI_HostAddress}}/api/menu/menuById/{{id}}
+DELETE {{MenuAPI_HostAddress}}/api/menu/{{id}}
+
+###
+
+GET {{MenuAPI_HostAddress}}/api/menu/allMenus
 
 ###

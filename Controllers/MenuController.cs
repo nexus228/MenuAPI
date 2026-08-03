@@ -1,4 +1,5 @@
 ﻿using MenuAPI.Model;
+using MenuAPI.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MenuAPI.Controllers
@@ -7,40 +8,41 @@ namespace MenuAPI.Controllers
     [Route("api/[controller]")]
     public class MenuController : ControllerBase
     {
-        [HttpGet, Route("allMenus")]
-        public IList<Menu> GetMenus()
+        private readonly IMenuRepository _repository;
+
+        public MenuController(IMenuRepository repository)
         {
-            IList<Menu> theMenuListToReturn = new List<Menu>();
+            _repository = repository;
+        }
 
-            Menu menu = new Menu();
-            menu.ID = 1;
-            menu.StartDate = DateTime.Now;
-            menu.Name = "Unser Speiseplan UPDATE 2";
-            menu.Days = new List<Day>();
-            theMenuListToReturn.Add(menu);
-
-            menu = new Menu();
-            menu.ID = 2;
-            DateTime heute = DateTime.Now;
-            DateTime in7Tagen = heute.AddDays(7);
-            menu.StartDate = in7Tagen;
-            menu.Name = "Unser Speiseplan UPDATE 2";
-            menu.Days = new List<Day>();
-            theMenuListToReturn.Add(menu);
-
-            return theMenuListToReturn;
+        [HttpGet, Route("allMenus")]
+        public async Task<IActionResult> GetMenus()
+        {
+            var menus = await _repository.GetAllMenusAsync();
+            return Ok(menus);
         }
 
         [HttpGet, Route("menuById/{id}")]
-        public Menu GetMenu(int id)
+        public async Task<IActionResult> GetMenu(int id)
         {
-            Menu theMenuToReturn = new Menu();
+            var menu = await _repository.GetMenuByIdAsync(id);
+            if (menu == null)
+            {
+                return NotFound();
+            }
+            return Ok(menu);
+        }
 
 
-            theMenuToReturn.Name = "Unser Speiseplan UPDATE 2";
-            theMenuToReturn.Days = new List<Day>();
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteMenu(int id)
+        {
+            bool deleted = await _repository.DeleteMenuAsync(id);
 
-            return theMenuToReturn;
+            if (!deleted)
+                return NotFound();
+
+            return NoContent();
         }
     }
 
