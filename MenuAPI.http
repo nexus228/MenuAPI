@@ -21,7 +21,3 @@ DELETE {{MenuAPI_HostAddress}}/api/menu/{{id}}
 GET {{MenuAPI_HostAddress}}/api/menu/allMenus
 
 ###
-
-GET {{MenuAPI_HostAddress}}/api/menu/allMenus
-
-###
