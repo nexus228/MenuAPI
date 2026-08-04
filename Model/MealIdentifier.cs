@@ -1,5 +1,5 @@
 ﻿namespace MenuAPI.Model
-{
+{ 
     public enum MealIdentifier
     {
         Unspecified = 0,

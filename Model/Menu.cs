@@ -1,6 +1,4 @@
-﻿using System.Collections;
-
-namespace MenuAPI.Model
+﻿namespace MenuAPI.Model
 {
     public class Menu
     {
@@ -9,6 +7,8 @@ namespace MenuAPI.Model
         public string? Name { get; set; }
 
         public DateTime StartDate { get; set; }
+
+        public DateTime EndDate { get; set; }
 
         public IList<Day>? Days { get; set; }
     }
