@@ -2,9 +2,9 @@
 {
     public class Meal
     {
-        public required int Id { get; set; }
+        public int Id { get; set; }
 
-        public required int DayId { get; set; }
+        public int DayId { get; set; }
 
         public string? Name { get; set; }
 
