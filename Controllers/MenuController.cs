@@ -33,6 +33,17 @@ namespace MenuAPI.Controllers
             return Ok(menu);
         }
 
+        [HttpPost]
+        public async Task<IActionResult> CreateMenu([FromBody] Menu menu)
+        {
+            if (menu == null)
+            {
+                return BadRequest();
+            }
+            var createdMenu = await _repository.CreateMenuAsync(menu);
+            return CreatedAtAction(nameof(GetMenu), new { id = createdMenu.ID }, createdMenu);
+        }
+
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteMenu(int id)

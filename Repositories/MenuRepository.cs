@@ -1,6 +1,7 @@
 ﻿using MenuAPI.DBContext;
 using MenuAPI.Model;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace MenuAPI.Repositories
 {
@@ -16,9 +17,11 @@ namespace MenuAPI.Repositories
 
         
 
-        public Task<Menu> CreateMenuAsync(Menu menu)
+        public async Task<Menu> CreateMenuAsync(Menu menu)
         {
-            throw new NotImplementedException();
+            EntityEntry<Menu> entityEntry = await _context.Menus.AddAsync(menu);
+            int v = await _context.SaveChangesAsync();
+            return entityEntry.Entity;
         }
 
         public async Task<bool> DeleteMenuAsync(int id)
