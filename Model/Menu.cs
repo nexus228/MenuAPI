@@ -10,6 +10,6 @@
 
         public DateTime EndDate { get; set; }
 
-        public IList<Day>? Days { get; set; }
+        public IList<Day> Days { get; set; } = [];
     }
 }

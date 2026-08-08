@@ -39,7 +39,8 @@ namespace MenuAPI.Repositories
 
         public async Task<List<Menu>> GetAllMenusAsync()
         {
-            return await _context.Menus.ToListAsync();
+            List<Menu> menus = await _context.Menus.Include(m => m.Days).ThenInclude(d => d.Meal).ToListAsync();
+            return menus;
         }
 
         public Task<Menu?> GetMenuByDateAsync(DateOnly date)

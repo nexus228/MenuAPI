@@ -10,6 +10,6 @@
 
         public DateTime Date { get; set; }
 
-        public IList<Meal>? Meal { get; set; }
+        public IList<Meal> Meal { get; set; } = [];
     }
 }
