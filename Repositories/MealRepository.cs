@@ -21,7 +21,7 @@ namespace MenuAPI.Repositories
             throw new NotImplementedException();
         }
 
-        public async Task<Meal?> UpdateMealAsync(Meal mealToUpdate)
+        public async Task<Meal> UpdateMealAsync(Meal mealToUpdate)
         {
             EntityEntry<Meal> entityEntry = _context.Meals.Update(mealToUpdate);
 

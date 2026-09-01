@@ -35,7 +35,7 @@ namespace MenuAPI.Controllers
                 return BadRequest();
             }
             var updatedMeal = await _repository.UpdateMealAsync(meal);
-            return CreatedAtAction(nameof(UpdateMeal), new { id = updatedMeal.ID }, updatedMeal);
+            return CreatedAtAction(nameof(UpdateMeal), new { id = updatedMeal.Id }, updatedMeal);
         }
     }
 }
