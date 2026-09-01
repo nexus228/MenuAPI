@@ -10,6 +10,10 @@
 
         public string? Description { get; set; }
 
+        public string? ReceiptURL { get; set; }
+
+        public string? ImageURL { get; set; }
+
         public MealIdentifier? Identifier { get; set; }
     }
 }
