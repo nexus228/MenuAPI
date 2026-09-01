@@ -32,6 +32,6 @@ namespace MenuAPI.DBContext
         }
 
         public DbSet<Menu> Menus { get; set; }
-        public DbSet<Meal> Meals { get; set; }
+        public DbSet<Meal> Meal { get; set; }
     }
 }
