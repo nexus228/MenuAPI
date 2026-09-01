@@ -1,7 +1,6 @@
 using MenuAPI.DBContext;
 using MenuAPI.Repositories;
 using Microsoft.EntityFrameworkCore;
-using MenuAPI.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +10,8 @@ builder.Services.AddDbContext<MenuDbContext>(options =>
         builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddScoped<IMenuRepository, MenuRepository>();
+builder.Services.AddScoped<IMealRepository, MealRepository>();
+
 builder.Services.AddControllers();
 
 var app = builder.Build();

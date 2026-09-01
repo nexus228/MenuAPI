@@ -41,7 +41,7 @@ namespace MenuAPI.Controllers
                 return BadRequest();
             }
             var createdMenu = await _repository.CreateMenuAsync(menu);
-            return CreatedAtAction(nameof(GetMenu), new { id = createdMenu.ID }, createdMenu);
+            return CreatedAtAction(nameof(CreateMenu), new { id = createdMenu.ID }, createdMenu);
         }
 
 

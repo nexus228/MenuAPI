@@ -25,8 +25,13 @@ namespace MenuAPI.DBContext
             modelBuilder.Entity<Menu>()
                 .Property(m => m.EndDate)
                 .HasColumnType("timestamp without time zone");
+
+            modelBuilder.Entity<Meal>()
+                .Property(m => m.Name)
+                .HasColumnType("character varying(255)");
         }
 
         public DbSet<Menu> Menus { get; set; }
+        public DbSet<Meal> Meals { get; set; }
     }
 }
