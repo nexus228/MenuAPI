@@ -16,13 +16,18 @@ namespace MenuAPI.Repositories
             _context = context;
         }
 
-        public Task<Meal?> GetMealByIdAsync(int id)
+        public async Task<Meal?> GetMealByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            return await _context.Meal.FindAsync(id);
         }
 
-        public async Task<Meal> UpdateMealAsync(Meal mealToUpdate)
+        public async Task<Meal?> UpdateMealAsync(Meal mealToUpdate)
         {
+            var exists = await _context.Meal.AnyAsync(m => m.Id == mealToUpdate.Id);
+            if (!exists)
+                return null;
+
+
             EntityEntry<Meal> entityEntry = _context.Meal.Update(mealToUpdate);
 
             await _context.SaveChangesAsync();

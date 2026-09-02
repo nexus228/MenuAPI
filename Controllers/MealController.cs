@@ -16,26 +16,29 @@ namespace MenuAPI.Controllers
         }
 
 
-        [HttpGet, Route("mealById/{id}")]
-        public async Task<IActionResult> GetMeal(int id)
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Meal>> GetMeal(int id)
         {
             var meal = await _repository.GetMealByIdAsync(id);
             if (meal == null)
-            {
                 return NotFound();
-            }
+
             return Ok(meal);
         }
 
-        [HttpPost]
-        public async Task<IActionResult> UpdateMeal([FromBody] Meal meal)
+        [HttpPut("{id}")]
+        public async Task<ActionResult<Meal>> UpdateMeal(int id, [FromBody] Meal meal)
         {
-            if (meal == null)
-            {
-                return BadRequest();
-            }
+            
+            if (id != meal.Id)
+                return BadRequest("Die ID in der URL stimmt nicht mit der ID im Body überein.");
+
             var updatedMeal = await _repository.UpdateMealAsync(meal);
-            return CreatedAtAction(nameof(UpdateMeal), new { id = updatedMeal.Id }, updatedMeal);
+
+            if (updatedMeal == null)
+                return NotFound($"Meal mit ID {id} wurde nicht gefunden.");
+
+            return Ok(updatedMeal);
         }
     }
 }
